@@ -11,38 +11,11 @@ import {
   ButtonDetailText,
 } from './styles';
 
-const data = [
-  {
-    id: 1,
-    name: 'APAD',
-    incident: 'Cadelinha atropelada',
-    value: '120.00',
-  },
-  {
-    id: 2,
-    name: 'APAD',
-    incident: 'Cadelinha atropelada',
-    value: '120.00',
-  },
-  {
-    id: 3,
-    name: 'APAD',
-    incident: 'Cadelinha atropelada',
-    value: '120.00',
-  },
-  {
-    id: 4,
-    name: 'APAD',
-    incident: 'Cadelinha atropelada',
-    value: '120.00',
-  },
-];
-
-export default function IncidentList() {
+export default function IncidentList({ data }) {
   const navigation = useNavigation();
 
-  function navigateToDetail(id) {
-    navigation.navigate('Detail');
+  function navigateToDetail(incident) {
+    navigation.navigate('Detail', { incident });
   }
   return (
     <Container
@@ -54,12 +27,17 @@ export default function IncidentList() {
           <Value>{item.name}</Value>
 
           <Property>CASO</Property>
-          <Value>{item.incident}</Value>
+          <Value>{item.description}</Value>
 
           <Property>VALOR:</Property>
-          <Value>R$ {item.value}</Value>
+          <Value>
+            {Intl.NumberFormat('pt-br', {
+              style: 'currency',
+              currency: 'BRL',
+            }).format(item.value)}
+          </Value>
 
-          <ButtonDetails onPress={() => navigateToDetail(item.id)}>
+          <ButtonDetails onPress={() => navigateToDetail(item)}>
             <ButtonDetailText>Ver mais detalhes</ButtonDetailText>
             <Feather name="arrow-right" size={16} color="#E02041" />
           </ButtonDetails>
