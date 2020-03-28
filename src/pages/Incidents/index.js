@@ -1,6 +1,8 @@
 import React from 'react';
 
-import logo from '../../assets/logo.png';
+import IncidentsList from '~/components/IncidentList';
+
+import logo from '~/assets/logo.png';
 
 import {
   Container,
@@ -23,7 +25,8 @@ export default function Incidents() {
       </Header>
 
       <Title>Bem vindo</Title>
-      <Description>Escolha um dos casos abaixo</Description>
+      <Description>Escolha um dos casos abaixo e salve o dia</Description>
+      <IncidentsList />
     </Container>
   );
 }
